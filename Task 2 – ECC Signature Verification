@@ -1,0 +1,23 @@
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl genpkey -algorithm EC \
+> -pkeyopt ec_paramgen_curve:prime256v1 \
+> -pkeyopt ec_param_enc:named_curve \
+> -out ecc_private.pem                       -------------------- Generated ECC keys - private key
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl pkey -in ecc_private.pem -pubout -out ecc_public.pem               --------------------public key
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ printf "Elliptic curves are efficient. \n" > ecc.txt      ---------message file
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ cat ecc.txt
+Elliptic curves are efficient.                    
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl dgst -sha256 -sign ecc_private.pem -out ecc.sig ecc.txt             ----------------------- signed
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl dgst -sha256 -verify ecc_public.pem -signature ecc.sig ecc.txt            -----------------------verified
+Verified OK
+
