@@ -1,0 +1,35 @@
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl version
+OpenSSL 3.5.3 16 Sep 2025 (Library: OpenSSL 3.5.3 16 Sep 2025)
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ printf "This file contains top secret information. \n" > secret.txt
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ cat secret.txt
+This file contains top secret information.
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ pwd
+/c/Users/EleneBakuradze
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl enc -aes-128-cbc -salt -pbkdf2 -iter 100000 -in secret.txt -out secret.enc
+enter AES-128-CBC encryption password:
+
+Verifying - enter AES-128-CBC encryption password:
+
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl enc -d -aes-128-cbc -pbkdf2 -iter 100000 -in secret.enc -out secret_decrypted.txt
+enter AES-128-CBC decryption password:
+
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ diff -u secret.txt secret_decrypted.txt
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ sha256sum secret.txt secret.enc
+8a6b529d33e3acbb7b3cd4f2065b0ff8b9766c52fb1089e4042be798145302dd *secret.txt
+55505e679721bd0f1f30b559f66ac66353e58da3ff6f575fec56331988f202b3 *secret.enc
+
