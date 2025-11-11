@@ -1,0 +1,47 @@
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ printf "Never trust, always verify. \n" > data.txt
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl dgst -sha256 data.txt
+SHA2-256(data.txt)= 5513ee35884361add48fd74169778adab19012badf872cd771901f6fbe9f3601
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl dgst -sha256 data.txt | awk -F'= ' '{print $2}' > data.sha256
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ cat data.sha256
+5513ee35884361add48fd74169778adab19012badf872cd771901f6fbe9f3601
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl dgst -sha256 -hmac "secretkey123" data.txt
+HMAC-SHA2-256(data.txt)= 268b4b0ec937c72191d0726eb770cd6bc6c4eff34b7b13f81dbf7e482e716278
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl dgst -sha256 -hmac "secretkey123" data.txt | awk -F'= ' '{print $2}' > data.hmac.sha256
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ cat data.hmac.sha256
+268b4b0ec937c72191d0726eb770cd6bc6c4eff34b7b13f81dbf7e482e716278
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ printf "Never trust, always verifz. \n" > data.txt
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ cat data.txt
+Never trust, always verifz.
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl dgst -sha256 -hmac "secretkey123" data.txt | awk -F'= ' '{print $2}' > data_modified.hmac.sha256
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ cat data_modified.hmac.sha256
+21ae620e57bcc47bf0e1a83aa0359b40aa95c25f1f718b1b2371f09f27c314e8
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ echo "Original HMAC: $(cat data.hmac.sha256)"
+Original HMAC: 268b4b0ec937c72191d0726eb770cd6bc6c4eff34b7b13f81dbf7e482e716278
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ echo "Modified HMAC: $(cat data_modified.hmac.sha256)"
+Modified HMAC: 21ae620e57bcc47bf0e1a83aa0359b40aa95c25f1f718b1b2371f09f27c314e8
+
