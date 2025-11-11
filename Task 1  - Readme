@@ -26,7 +26,7 @@ enter AES-128-CBC decryption password:
 
 
 AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
-$ diff -u secret.txt secret_decrypted.txt
+$ diff -u secret.txt secret_decrypted.txt     ---------- No outcome was given by the command because there was no difference netween encrypted and decrypted files
 
 AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
 $ sha256sum secret.txt secret.enc
