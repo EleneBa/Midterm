@@ -1,0 +1,83 @@
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl dhparam -out dhparam.pem 2048
+Generating DH parameters, 2048 bit long safe prime
+....................................................................................................+.........+..............................................................................................................................+.....................................................................................................................................................................................................+.................................................................................................................................................................................................................................+.........................................................................................................................................................................................................................................................................+....................................+........+..................................+..................................................................................................................................+....................................................+..........................................................................................................................................+............................................................................................................................................................................................................................................................................................................................................................+.....................+.................+...........................................................+....+..........................................................................+....................................................................................................................+.......................................................................+...............................................+..........................................................................................................................................................................................................................................+..............................................................................................................................................+...............................++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*++*
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~                       ------------------------------------Created Alice public and private keys
+$ openssl genpkey -paramfile dhparam.pem -out alice_priv.pem
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl pkey -in alice_priv.pem -pubout -out alice_pub.pem
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~                                     ------------------------------------Created Bobs puclic and private keys
+$ openssl genpkey -paramfile dhparam.pem -out bob_priv.pem
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl pkey -in bob_priv.pem -pubout -out bob_pub.pem
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ echo "=== Alice public key ==="
+=== Alice public key ===
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~                                         ------------------------------------Public keys for both, Alice and Bob
+$ cat alice_pub.pem
+-----BEGIN PUBLIC KEY-----
+MIICJTCCARcGCSqGSIb3DQEDATCCAQgCggEBAIuHD4whfUesK6YGxPbT4BFuUEUX
+Tuv9yQ4Hvf3iRYmyKlht5WsO2UQ4i6la8hEpkZBQVHuqGJfpG+OOHNfP4TIek9ZW
+aZm02rgXIU78DNQbbRyTkh6qSIhKO01fG+g794vA8X3RFOi8hkbrxaEvo217JtDR
+3Qayse2v+9JbCSpru97+CPyVNSaI2+fB7baojVHhBfRdcGaAvo07x50Y5uAKRItJ
+K9/q6q5yFfwyluCrPqgO7oNmgm9z7/cDSN8bsKPsj9CwbgHGOxJlRwkwgq6ToUXo
+u4zNkYzW68bIsWl/QEAYFJgLBstTkwv30+7MP4XQ9MWB/wnToWZbDl+2kR8CAQID
+ggEGAAKCAQEAiay8APauiHwzs+FpPQvkF7TFTdbe3wCKXIZdM6Qm7FRM+yCtQbP6
+vXqqASW26G7EFdu6oGSfQ/5F1FyfeUB8pIH2BwPDGC9VoSaoZpiEIwbPThfLqEEp
+ZJrHK0/cgD2bQsi4TV2UxXuqzqyfr8TIBetx5r4wG8AIHiYIFfRtfs2RCzYN6Yhi
+CLv4J38diF+AzjE5ZWufNbajgYA8+c7kzJnSoK7lALL4CweCTz5eXrpOESAqfHvT
+QEuk2q91U9gqQiQ0v5DHvdGj39Jjx9YfBVR5lisI7zCFdxuYbIjG6LRhKDNh2Xd7
+WAxBrzAE4ES8LWnIOfF96tYNKHI7QYrQEw==
+-----END PUBLIC KEY-----
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ echo "=== Bob public key ==="
+=== Bob public key ===
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ cat bob_pub.pem
+-----BEGIN PUBLIC KEY-----
+MIICJDCCARcGCSqGSIb3DQEDATCCAQgCggEBAIuHD4whfUesK6YGxPbT4BFuUEUX
+Tuv9yQ4Hvf3iRYmyKlht5WsO2UQ4i6la8hEpkZBQVHuqGJfpG+OOHNfP4TIek9ZW
+aZm02rgXIU78DNQbbRyTkh6qSIhKO01fG+g794vA8X3RFOi8hkbrxaEvo217JtDR
+3Qayse2v+9JbCSpru97+CPyVNSaI2+fB7baojVHhBfRdcGaAvo07x50Y5uAKRItJ
+K9/q6q5yFfwyluCrPqgO7oNmgm9z7/cDSN8bsKPsj9CwbgHGOxJlRwkwgq6ToUXo
+u4zNkYzW68bIsWl/QEAYFJgLBstTkwv30+7MP4XQ9MWB/wnToWZbDl+2kR8CAQID
+ggEFAAKCAQBOmAOUKBWilz/ypmePx3kSRnUykjdv/7HW+PK81QOCt5hbMznpgjH5
+rnpX4U1U56CV/KE4NrO2J1DBoSWcNW8cCetbNrzYk2wSFSUymdaba+dgP+kdXgVn
+Sm8/RvxgOv8KbIU1/JJA4k7IiMhwFRszOg7ls5qqek+6RyGxH0TIQeyBHYTIxGAx
+aq3AZzF90Rir2VjGR1YmRvZKb0CiPzOHFYKd31G+GF1OEJYDyVWIwMnXr8n9uLBK
+Ol+QllGwFLobrrQg0FFEQpZMlOmlvBTwZrh/JipQ1nk2Re0MBmGiaDsMne/Ag5cJ
+z/tSmzb58ClZkFHAscXCfkvjSfa4yRvJ
+-----END PUBLIC KEY-----
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~                                        ------------------------------------ Generated shared secret for Alice and Bob
+$ openssl pkeyutl -derive -inkey alice_priv.pem -peerkey bob_pub.pem -out alice_shared.bin
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl pkeyutl -derive -inkey bob_priv.pem -peerkey alice_pub.pem -out bob_shared.bin
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl base64 -A -in alice_shared.bin
+W7ROslc/f5ft0WiDom6DMXb+6UPcUjJMuP34dc0AhY10MJXIWuiGs0iGTmT9kRKQLhEToHvLIbbWbRxwEjeHQbh0NKgecQA3vbQ/utjfoHuqE+ls7nESA8MTBOLOIa3KFPrVx+EKOBJ/Q5PsX4zLl7Jvi4AqgkQ8QhS1hghOifs7/5REFtei7IOISjKzK1yOjDIAbS0mSp27S6Ek8eG6h9EcwWa/ELYUfjjufhquKEeN8PvcYRe7qVZoHuCJ1bY5UerEmEmB3pdGyWzpN8gavVXZIK103sABaCAUr0jV3uCXR64lf7lO6D8BQWTut35bhWLbdujNpbn+CjAgMBaLqA==
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~
+$ openssl base64 -A -in bob_shared.bin
+W7ROslc/f5ft0WiDom6DMXb+6UPcUjJMuP34dc0AhY10MJXIWuiGs0iGTmT9kRKQLhEToHvLIbbWbRxwEjeHQbh0NKgecQA3vbQ/utjfoHuqE+ls7nESA8MTBOLOIa3KFPrVx+EKOBJ/Q5PsX4zLl7Jvi4AqgkQ8QhS1hghOifs7/5REFtei7IOISjKzK1yOjDIAbS0mSp27S6Ek8eG6h9EcwWa/ELYUfjjufhquKEeN8PvcYRe7qVZoHuCJ1bY5UerEmEmB3pdGyWzpN8gavVXZIK103sABaCAUr0jV3uCXR64lf7lO6D8BQWTut35bhWLbdujNpbn+CjAgMBaLqA==
+
+AzureAD+EleneBakuradze@ebakuradze MINGW64 ~                        ------------------------------------ confirmed with hashes and they matched
+$ sha256sum alice_shared.bin bob_shared.bin
+16254b467bb8513a05fc1ce1e1920f470dc45c76de75a912935aa5804ed49e8c *alice_shared.bin
+16254b467bb8513a05fc1ce1e1920f470dc45c76de75a912935aa5804ed49e8c *bob_shared.bin
+
+
+
+Task - 4 B
+Diffie-Hellman (and its modern elliptic-curve version, ECDH) is used in TLS handshakes (HTTPS) and secure messaging apps like Signal.
+It lets two parties create a shared secret over an insecure network without ever sending the key directly.
+This ensures confidentiality and, when using ephemeral keys, forward secrecy—past messages remain safe even if future keys are compromised.
